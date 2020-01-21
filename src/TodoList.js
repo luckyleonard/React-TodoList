@@ -26,6 +26,7 @@ class TodoList extends Component {
             className='input'
             value={this.state.inputValue}
             onChange={this.handleInputChange}
+            ref={(input) => {this.input = input}}//ref相当于对应input Dom节点
           />
           <button onClick={this.handleBtnClick}>提交</button> 
         </div>
@@ -57,8 +58,8 @@ class TodoList extends Component {
         </Fragment>)
     })
   }
-  handleInputChange(e) {
-    const value = e.target.value
+  handleInputChange() {
+    const value = this.input.value;//替换e.target
     this.setState(() => ({
       inputValue: value
     }))
@@ -70,7 +71,7 @@ class TodoList extends Component {
     this.setState((prevState) => ({
       list: [...prevState.list, prevState.inputValue],//数组扩展运算符，对数组进行添加操作
       inputValue: ''//并清空输入框内容
-    }))
+    }))//返回state对象
     //使用prevState避免修改掉现有的状态
   }
 
@@ -81,7 +82,7 @@ class TodoList extends Component {
       const list = [...prevState.list];
       list.splice(index,1);//将数组操作写入函数体内
       return {list}//返回list 等同于{list：list}
-    })
+    }, () => {})//回调函数可用于执行ref相关的直接DOM节点操作
   }
 }
 
