@@ -1,5 +1,6 @@
 import React, { Component,Fragment } from 'react';
 import TodoItem from './TodoItem';
+import axios from 'axios';
 import './TodoList.css';
 
 class TodoList extends Component {
@@ -38,6 +39,12 @@ class TodoList extends Component {
     //  绑定webapi方法时候需要onChange,C大写 
     //  需要使用bind绑定this指向
     )
+  }
+
+  componentDidMount(){
+    axios.get('/api/todolist')
+      .then(()=>{alert('success axios')})
+      .catch(()=>{alert('fail axios')})
   }
 
   getTodoListItem() {
