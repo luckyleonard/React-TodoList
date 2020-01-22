@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Proptyps from 'prop-types';
+import PropTypes from 'prop-types';
 
 class TodoItem extends Component {
 
@@ -8,6 +8,14 @@ class TodoItem extends Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
   }
+
+  shouldComponentUpdate(nextProps,nextState) {
+    if(nextProps.content !== this.props.content) {
+      return true;
+    }else {
+      return false;
+    }
+  }//使用nextProps参数比对现有传入的值，当发生变化时候才进行重新渲染
 
   render() {
     const { content } = this.props;//解构赋值
