@@ -29,6 +29,7 @@ class TodoList extends Component {
             id='insertArea'
             className='input'
             value={this.state.inputValue}
+            
             onChange={this.handleInputChange}
             ref={(input) => {this.input = input}}//ref相当于对应input Dom节点
           />
